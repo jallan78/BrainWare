@@ -7,15 +7,16 @@ namespace Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var mdf = @"C:\temp\BrainWare\BrainWare\Api\data\BrainWare.mdf";
-            var connectionString = $"Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=BrainWAre;Integrated Security=SSPI;AttachDBFilename={mdf}";
+            var connectionString = $"Data Source=.\\SQLEXPRESS;Initial Catalog=BrainWAre;Integrated Security=True;TrustServerCertificate=True;";
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Order> Order { get; set; }
 
-        public DbSet<Product> Products { get; set; }    
+        public DbSet<Product> Product { get; set; }    
 
-        public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<OrderProduct> OrderProduct { get; set; }
+
+        public DbSet<Company> Company { get; set; }
     }
 }

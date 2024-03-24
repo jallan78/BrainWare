@@ -1,13 +1,17 @@
 ﻿namespace Api.Infrastructure
 {
     using System.Data;
+    using System.Threading.Tasks;
+    using Contract;
+    using Domain.Repositories;
     using Models;
 
-    public class OrderService : IOrderService
+    public class OrderService(IOrderQueryRepository orderQueryRepository) : IOrderService
     {
-        public List<Order> GetOrdersForCompany(int CompanyId)
-        {
+        private readonly IOrderQueryRepository _orderQueryRepository = orderQueryRepository;
 
+        public IList<Order> GetOrdersForCompany(int CompanyId)
+        {
             var database = new Database();
 
             // Get the orders
@@ -75,6 +79,12 @@
             }
 
             return values;
+        }
+
+        public async Task<IList<OrderDto>> GetOrdersListAsync(int CompanyId)
+        {
+            var test = await _orderQueryRepository.GetOrderDetailsAsync(CompanyId);
+            return test;
         }
     }
 }

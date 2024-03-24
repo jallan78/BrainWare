@@ -1,4 +1,6 @@
+using Api.Infrastructure;
 using Data;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using SimpleInjector;
 using Container = SimpleInjector.Container; 
@@ -21,16 +23,19 @@ builder.Services.AddSimpleInjector(container, options =>
     options.AddAspNetCore().AddControllerActivation();
 });
 
+// populate the container
+container.Register<IOrderService, OrderService>();
+DataComponentBootstrapper.Bootstrap(container);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// EF Core uses this method at design time to access the DbContext
-builder.Services.AddDbContext<MainContext>();
-
+var connectionString = builder.Configuration.GetValue<string>("AppSettings:connectionString");
+builder.Services.AddDbContext<MainContext>(options =>
+    options.UseSqlServer(connectionString));
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

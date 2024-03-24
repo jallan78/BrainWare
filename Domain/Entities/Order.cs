@@ -1,15 +1,15 @@
-﻿namespace Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Entities
 {
-    public class Order : EntityBase<int>
+    public class Order
     {
-        public string CompanyName { get; set; }
-
+        [Key]
+        public int Order_id { get; set; }
         public string Description { get; set; }
-
-        public decimal OrderTotal { get; set; }
-        
-        public int? OrderProductId { get; set; }
-
-        public virtual List<OrderProduct> OrderProducts { get; set; }
+        [ForeignKey("Company")]
+        public int CompanyId { get; set; }
+        public virtual Company Company { get; set; }
     }
 }
