@@ -10,6 +10,7 @@ namespace Data.Repositories
 
         public async Task<IList<OrderDto>> GetOrderDetailsAsync(int companyId)
         {
+
            var query = from c in _context.Company
                 join o in _context.Order on c.Company_id equals o.Order_id
                 join op in _context.OrderProduct on o.Order_id equals op.Order_id
@@ -37,7 +38,7 @@ namespace Data.Repositories
                     }
                 };
 
-            return await query.ToListAsync();  
+            return await query.ToListAsync();
         }
     }
 }

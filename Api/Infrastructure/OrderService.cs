@@ -83,8 +83,14 @@
 
         public async Task<IList<OrderDto>> GetOrdersListAsync(int CompanyId)
         {
-            var test = await _orderQueryRepository.GetOrderDetailsAsync(CompanyId);
-            return test;
+            try
+            {
+                return await _orderQueryRepository.GetOrderDetailsAsync(CompanyId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error getting orders", ex);
+            }
         }
     }
 }

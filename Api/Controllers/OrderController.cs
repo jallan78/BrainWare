@@ -1,6 +1,7 @@
 ﻿namespace Api.Controllers
 {
-  using Infrastructure;
+    using Contract;
+    using Infrastructure;
   using Microsoft.AspNetCore.Mvc;
   using Models;
 
@@ -13,13 +14,11 @@
 
     [HttpGet]
     [Route("order/{id}")]
-    public IEnumerable<Order> GetOrders(int id = 1)
+    public async Task<IList<OrderDto>> GetOrders(int id = 1)
     {
         _logger.LogInformation($"{nameof(GetOrders)} called.");  
 
-        var test = _orderService.GetOrdersListAsync(id).Result;
-
-        return _orderService.GetOrdersForCompany(id);
+        return await _orderService.GetOrdersListAsync(id);
     }
   }
 }

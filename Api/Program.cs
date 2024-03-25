@@ -5,7 +5,6 @@ using Serilog;
 using SimpleInjector;
 using Container = SimpleInjector.Container; 
 
-
 Container container = new();
 
 var builder = WebApplication.CreateBuilder(args);
