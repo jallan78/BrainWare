@@ -1,3 +1,22 @@
+Due to time considerations, I haven't been able to complete this as fully as I have wished.
+
+With the refactor, I managed to 
+- Create a DDD structure that separated the data, domain and contract concerns
+- Implement a repository pattern
+- Add dependency injection for scalability and maintainability
+- Refactor to use entity framework
+- Add logging
+- Update to C# 9 where I could (use of primary constructors)
+
+If I had managed to spend more time on this application I would have added:
+
+- Implemented a unit of work pattern for the repository
+- Unit testing
+- Integration testing
+- Angular material UI
+- Angular data tables
+- A separate auth service with user name / password authentication (a stretch goal)
+
 # BrainWare Order List
 
 This is a very small sample web application written in a very simplistic manner.

@@ -2,10 +2,9 @@
 {
     using Contract;
     using Infrastructure;
-  using Microsoft.AspNetCore.Mvc;
-  using Models;
+    using Microsoft.AspNetCore.Mvc;
 
-  [ApiController]
+    [ApiController]
   [Route("api")]
   public class OrderController(ILogger<OrderController> logger, IOrderService orderService) : ControllerBase
   {
