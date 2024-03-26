@@ -6,5 +6,6 @@
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public List<OrderProductDto> OrderProducts { get; set; }
+        public decimal OrderTotal { get; set; }
     }
 }
